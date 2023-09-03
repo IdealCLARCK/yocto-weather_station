@@ -1,0 +1,31 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:             service3
+# Required-Start:       
+# Required-Stop:        
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Service 3 
+### END INIT INFO
+
+# path service binary
+SERVICE3_BIN="/usr/bin/service3"
+
+do_start()
+{
+    $SERVICE3_BIN &
+}
+
+do_stop()
+{
+    pkill -f "$SERVICE3_BIN"
+}
+
+case "$1" in
+  start) do_start ;;
+  stop)  do_stop  ;;
+  restart) do_stop; do_start ;;
+  *) echo "Usage: $0 {start|stop|restart}" >&2; exit 1 ;; 
+esac
+
+exit 0
